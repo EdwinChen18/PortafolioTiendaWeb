@@ -1,22 +1,92 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Tienda en linea</title>
+        <title>Animal Wiki-Guide</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
+        <style>
+            body, html {
+                height: 100%;
+                margin: 0;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            
+            * {
+                box-sizing: border-box;
+            }
+            
+            .bg-image {
+                background-image: url("Images/STF6.jpg");
+                filter: blur(0px);
+                height: 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                -webkit-background-size: cover;
+            }
+            
+            .bg-text {
+                background-color: rgba(0, 0, 0, 0.4);
+                color: white;
+                font-weight: bold;
+                border: 3px solid #f2f2f2;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+                width: 80%;
+                padding: 20px;
+                text-align: center;
+            }
+            
+            body {
+                margin: 0;
+            }
+    
+            .navbar {
+                overflow: hidden;
+                background-color: black;
+                position: fixed;
+                top: 0;
+                width: 100%;
+            }
+    
+            .navbar a {
+                float: left;
+                display: block;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+    
+            .navbar a:hover {
+                background: #ddd;
+                color: black;
+            }
+    
+            .main {
+                padding: 16px;
+                margin-top: 30px;
+                height: 1200px;
+            }
+        </style>
     </head>
     <body>
-        <div>
-            <h1 style="text-align: center">Home</h1>
-            <p>Bienvenidos a la página de la Tienda en línea</p>
+        <div class="bg-image"></div>
+        <div class="bg-text">
+            <h1>Bienvenido a Stack-Store</h1>
         </div>
         
-        <p style="text-align: left">Lorem ipsum.</p>
-        <p style="text-align: right">Lorem ipsum.</p>
-        <p style="text-align: center">Lorem ipsum.</p>
         
-        <br>
-        <br>
+        <div class="navbar">
+            <a href="#Home">Home</a>
+            <a href="#Nintendo">Nintendo</a>
+            <a href="#Playstation">Playstation</a>
+            <a href="#Xbox">Xbox</a>
+            <a href="#PC">PC</a>
+        </div>
         
-        <p>Última línea</p>       
     </body>
 </html>
