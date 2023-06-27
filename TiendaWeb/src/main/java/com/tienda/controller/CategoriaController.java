@@ -50,7 +50,7 @@ public class CategoriaController {
         return "redirect:/categoria/listado";
     }
     
-    @GetMapping("/eliminar/{idCategoria}")
+    @GetMapping("/eliminar/{idCategoria}")//idArbol
     public String categoriaEliminar(Categoria categoria){
         categoriaService.delete(categoria);
         return "redirect:/categoria/listado";
