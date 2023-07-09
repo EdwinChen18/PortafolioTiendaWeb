@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProductoService {
     
-    public List<Producto> getCategorias(boolean activos);
+    public List<Producto> getProductos(boolean activos);
     
     public Producto getProducto(Producto producto);
     

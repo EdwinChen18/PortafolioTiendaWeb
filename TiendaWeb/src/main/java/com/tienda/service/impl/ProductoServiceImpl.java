@@ -18,7 +18,7 @@ public class ProductoServiceImpl implements ProductoService{
     
     @Override
     @Transactional(readOnly=true)
-    public List<Producto> getCategorias(boolean activos){
+    public List<Producto> getProductos(boolean activos){
         var lista= productoDao.findAll();
         if(activos){
             lista.removeIf(productoElemento -> !productoElemento.isActivo());

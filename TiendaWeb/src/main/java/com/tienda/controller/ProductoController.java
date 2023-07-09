@@ -1,6 +1,7 @@
 package com.tienda.controller;
 
 import com.tienda.domain.Producto;
+import com.tienda.service.CategoriaService;
 import com.tienda.service.ProductoService;
 import com.tienda.service.impl.FirebaseStorageServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -21,23 +22,28 @@ public class ProductoController {
     @Autowired
     private ProductoService productoService;
     
+        @Autowired
+    private CategoriaService categoriaService;
+    
     @GetMapping("/listado")
     public String inicio(Model model){
-        var productos = productoService.getCategorias(false);
+        var productos = productoService.getProductos(false);
         model.addAttribute("productos", productos);
         model.addAttribute("totalProductos", productos.size());
         return "/producto/listado";
     }
     @GetMapping("/nuevo")
-    public String categoriaNuevo(Producto producto) {
-        return "/categoria/modifica";
+    public String productoNuevo(Producto producto, Model model) {
+        var categorias = categoriaService.getCategorias(true);
+        model.addAttribute("categorias", categorias);
+        return "/producto/modifica";
     }
     
     @Autowired
     private FirebaseStorageServiceImpl firebaseStorageService;
     
     @PostMapping("/guardar")
-    public String categoriaGuardar(Producto producto, @RequestParam("imagenFile")
+    public String productoGuardar(Producto producto, @RequestParam("imagenFile")
     MultipartFile imagenFile){
         if(!imagenFile.isEmpty()){
             productoService.save(producto);
@@ -49,14 +55,14 @@ public class ProductoController {
         return "redirect:/producto/listado";
     }
     
-    @GetMapping("/eliminar/{idCategoria}")//idArbol
-    public String categoriaEliminar(Producto producto){
+    @GetMapping("/eliminar/{idProducto}")//idArbol
+    public String productoEliminar(Producto producto){
         productoService.delete(producto);
         return "redirect:/producto/listado";
     }
     
-    @GetMapping("/modificar/{idCategoria}")
-    public String categoriaModificar(Producto producto, Model model) {
+    @GetMapping("/modificar/{idProducto}")
+    public String productoModificar(Producto producto, Model model) {
         producto = productoService.getProducto(producto);
         model.addAttribute("producto", producto);
         return "/producto/modifica";
