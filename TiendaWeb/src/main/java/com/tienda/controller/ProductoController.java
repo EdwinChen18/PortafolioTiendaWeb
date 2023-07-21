@@ -18,53 +18,55 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 @RequestMapping("/producto")
 public class ProductoController {
-    
+
     @Autowired
     private ProductoService productoService;
-    
-        @Autowired
+
+    @Autowired
     private CategoriaService categoriaService;
-    
-    @GetMapping("/listado")
-    public String inicio(Model model){
-        var productos = productoService.getProductos(false);
-        model.addAttribute("productos", productos);
-        model.addAttribute("totalProductos", productos.size());
-        return "/producto/listado";
-    }
-    @GetMapping("/nuevo")
-    public String productoNuevo(Producto producto, Model model) {
-        var categorias = categoriaService.getCategorias(true);
-        model.addAttribute("categorias", categorias);
-        return "/producto/modifica";
-    }
-    
+
     @Autowired
     private FirebaseStorageServiceImpl firebaseStorageService;
-    
+
+    @GetMapping("/listado")
+    public String inicio(Model model) {
+        var productos = productoService.getProductos(false);
+        var categorias = categoriaService.getCategorias(true);
+        model.addAttribute("productos", productos);
+        model.addAttribute("totalProductos", productos.size());
+        model.addAttribute("categorias", categorias);
+        return "/producto/listado";
+    }
+
+    @GetMapping("/nuevo")
+    public String productoNuevo(Producto producto) {
+        return "/producto/modifica";
+    }
+
     @PostMapping("/guardar")
-    public String productoGuardar(Producto producto, @RequestParam("imagenFile")
-    MultipartFile imagenFile){
-        if(!imagenFile.isEmpty()){
+    public String productoGuardar(Producto producto, @RequestParam("imagenFile") MultipartFile imagenFile) {
+        if (!imagenFile.isEmpty()) {
             productoService.save(producto);
             producto.setRutaImagen(firebaseStorageService.cargaImagen(
-                    imagenFile, 
-                    "producto", producto.getIdProducto()));
+                    imagenFile,
+                    "productos", producto.getIdProducto()));
         }
         productoService.save(producto);
         return "redirect:/producto/listado";
     }
-    
-    @GetMapping("/eliminar/{idProducto}")//idArbol
-    public String productoEliminar(Producto producto){
+
+    @GetMapping("/eliminar/{idProducto}")
+    public String productoEliminar(Producto producto) {
         productoService.delete(producto);
         return "redirect:/producto/listado";
     }
-    
+
     @GetMapping("/modificar/{idProducto}")
     public String productoModificar(Producto producto, Model model) {
         producto = productoService.getProducto(producto);
+        var categorias = categoriaService.getCategorias(true);
         model.addAttribute("producto", producto);
+        model.addAttribute("categoria", categorias);
         return "/producto/modifica";
     }
 }

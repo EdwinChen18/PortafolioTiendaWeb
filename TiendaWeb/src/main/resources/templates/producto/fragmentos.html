@@ -71,7 +71,7 @@
             </div>
         </section>
 
- <!-- 3 Sección principal para mostrar la informaccion de la entidad producto -->​
+        <!-- 3 Sección principal para mostrar la informaccion de la entidad producto -->​
         <section th:fragment="listadoProductos" id="productos">​
             <div class="container">​
                 <div class="row">​
@@ -91,23 +91,27 @@
                                             <th class="text-center">[[#{producto.categoria}]]</th>​
                                             <th></th><th></th></tr>​
                                     </thead>​
-                                    <tbody>​
-                                        <tr th:each="producto, contador : ${productos}">​
-                                            <td class="text-center">[[${contador.count}]]</td>​
-                                            <td class="fs-6">[[${producto.descripcion}]]</td>​
-                                        <td class="text-end">[[${#numbers.formatDecimal(producto.precio, 1, 'DEFAULT', 2, 'DEFAULT')}]]</td>​
-                                            <td class="text-center">[[${producto.existencias}]]</td>​
-                                            <td class="text-end">[[${#numbers.formatDecimal(producto.precio*producto.existencias, 1, 'DEFAULT', 2, 'DEFAULT')}]]</td>​
-             <td  class="text-center" th:text="${producto.activo} ? 'Activa' : 'Inactiva'"/>​
-                                            <td>[[${producto.categoria.descripcion}]]</td>​
-                                            <td><a th:href="@{/producto/eliminar/}+${producto.idProducto}"​
-                                                   class="btn btn-danger">​
-                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a></td>​
-                                            <td>​
-                                                <a th:href="@{/producto/modificar/}+${producto.idProducto}"​
-                                                   class="btn btn-success">​
-                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>​
-                                    </tbody>​
+                                    <tbody>
+                                        <tr th:each="producto, contador : ${productos}">
+                                            <td class="text-center">[[${contador.count}]]</td>
+                                            <td class="fs-6">[[${producto.descripcion}]]</td>
+                                            <td class="text-end">[[${#numbers.formatDecimal(producto.precio, 1, 'DEFAULT', 2, 'DEFAULT')}]]</td>
+                                            <td class="text-center">[[${producto.existencias}]]</td>
+                                            <td class="text-end">[[${#numbers.formatDecimal(producto.precio*producto.existencias, 1, 'DEFAULT', 2, 'DEFAULT')}]]</td>
+                                            <td class="text-center" th:text="${producto.activo} ? 'Activa' : 'Inactiva'"/>
+                                            <td>[[${producto.categoria.descripcion}]]</td>
+                                            <td sec:authorize="hasRole('ROLE_ADMIN')">
+                                                <a th:href="@{/producto/eliminar/}+${producto.idProducto}" class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/producto/modificar/}+${producto.idProducto}" class="btn btn-success">
+                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>​
                             </div>​
                             <div class="text-center p-2" th:if="${productos == null or productos.empty}">​
