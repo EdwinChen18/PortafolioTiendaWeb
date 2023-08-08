@@ -33,7 +33,7 @@
                                    role="button"
                                    aria-expanded="false">[[#{plantilla.pruebas}]]</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item"  th:href="@{/pruebas/listado}">[[#{plantilla.asociaciones}]]</a></li>
+                                    <li><a class="dropdown-item"  th:href="@{/pruebas/listado}">[[#{plantilla.asociaciones}]]</a></li> <!--se define un elemento de la lista del submenú y con th:href se utiliza para definir la URL a la que se dirigirá cuando se haga clic en el elemento -->
                                     <li><a class="dropdown-item"  th:href="@{/pruebas/listado2}">[[#{plantilla.consultas}]]</a></li>
                                     <li> <a class="nav-link, dropdown-item" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
                                     <li> <a class="nav-link, dropdown-item" th:href="@{/reportes/principal}">[[#{plantilla.reportes}]]</a></li>
@@ -50,12 +50,12 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <ul class="navbar-nav ms-2" sec:authorize="isAuthenticated()">
+                            <ul class="navbar-nav ms-2" sec:authorize="isAuthenticated()"> <!-- verifica si el usuario está autenticado antes de renderizar este elemento Si está autenticado se muestra contenido-->
                                 <li class="nav-item text-white my-auto">
                                     <i class="fas fa-user"></i> <span sec:authentication="name">Bob</span>
                                 </li>
                                 <li class="nav-item my-auto">
-                                    <form method="post" th:action="@{/logout}">
+                                    <form method="post" th:action="@{/logout}"> <!-- envía una solicitud POST al endpoint /logout cuando el usuario hace clic en el botón de salida-->
                                         <button class="btn btn-dark"><i class="fas fa-sign-out-alt"></i></button>
                                     </form>
                                 </li>

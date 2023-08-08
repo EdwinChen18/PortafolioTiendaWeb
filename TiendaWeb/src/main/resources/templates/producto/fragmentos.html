@@ -8,7 +8,7 @@
     <body>
         <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
-            <div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="container" sec:authorize="hasRole('ROLE_ADMIN')"> <!-- Parte de autorizacion y roles, dependiendo de que rol tenga se tiene acceso a otras cosas como Pruebas  -->
                 <div class="row">
                     <div class="col-md-3">   
                         <button 

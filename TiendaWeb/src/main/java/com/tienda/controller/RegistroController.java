@@ -22,9 +22,10 @@ public class RegistroController {
     @Autowired
     private RegistroService registroService;
 
-    @GetMapping("/nuevo")
-    public String nuevo(Model model, Usuario usuario) {
-        return "/registro/nuevo";
+    @GetMapping("/nuevo") //mapea el método a una URL específica
+    public String nuevo(Model model, Usuario usuario) { //El parámetro Model se utiliza para agregar atributos a la vista
+        //El parámetro Usuario es un objeto que se inyecta automáticamente por Spring y se utiliza para capturar los datos del formulario que podría estar enviando el usuario en la página
+        return "/registro/nuevo"; //devuelve una cadena que representa el nombre de la vista (plantilla) que se debe mostrar al usuario después de que se ejecute el método
     }
 
     @GetMapping("/recordar")
