@@ -125,6 +125,53 @@
                         </div>
                     </div>
                 </div>  
+                                <div class="card">
+                    <div class="card-header text-center">
+                        Factura
+                    </div>
+                    <div class="card-body">
+                        <div class="card-header">
+                            <h4>Factura</h4>
+                        </div>
+                        <div class="card-body">
+                            <form method="GET"
+                                  th:action="@{/reportes/factura}" 
+                                  class="was-validated">
+
+                                <div class="mb-3">
+                                    <label for="descripcion">descripcion</label>
+                                    <input type="String" class="form-control" 
+                                           name="descripcion"
+                                           th:value="${descripcion}"
+                                           required="true"/>
+                                </div>                                
+                              
+                                <div class="row">
+                                    <div class="col-md-3 d-grid">
+                                        <button name="tipo" value="vPdf" type="submit" class="btn btn-primary">
+                                            <i class='fas fa-eye'></i><i class='fas fa-file-pdf'></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-3 d-grid">    
+                                        <button name="tipo" value="Pdf" type="submit" class="btn btn-success">
+                                            <i class='fas fa-download'></i><i class='fas fa-file-pdf'></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-3 d-grid">    
+                                        <button name="tipo" value="Xls" type="submit" class="btn btn-warning">
+                                            <i class='fas fa-download'></i><i class='fas fa-file-excel'></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-md-3 d-grid">    
+                                        <button name="tipo" value="Xls" type="submit" class="btn btn-danger">
+                                            <i class='fas fa-download'></i><i class='fas fa-file-csv'></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>  
             </div>
         </div>
 
