@@ -18,6 +18,13 @@ public class CarritoController {
     @Autowired
     private ProductoService productoService;
     
+    @GetMapping("/") 
+    public String index(Model model) {
+    var productos = productoService.getProductos(true);
+    model.addAttribute("productos",productos);
+    return "index";
+    }
+
     //Para ver el carrito
     @GetMapping("/carrito/listado")
     public String inicio(Model model) {
